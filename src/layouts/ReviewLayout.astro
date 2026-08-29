@@ -4,8 +4,19 @@ const { frontmatter } = Astro.props;
 ---
 <Layout title={frontmatter.title}>
   <article class="max-w-3xl mx-auto w-full">
+
+    <!-- Imagem de Capa no Topo do Artigo -->
+    {frontmatter.image && (
+      <div class="mb-8 rounded-xl overflow-hidden border border-darkBorder shadow-lg h-72 md:h-96">
+        <img 
+          src={frontmatter.image} 
+          alt={frontmatter.title} 
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
     
-    <!-- Cabeçalho do Artigo -->
+    <!-- Cabeçalho Único Oficial -->
     <header class="mb-10 border-b border-darkBorder pb-8 pt-4">
       <h1 class="text-3xl md:text-5xl font-extrabold mb-6 text-textMain leading-tight">
         {frontmatter.title}
@@ -19,7 +30,7 @@ const { frontmatter } = Astro.props;
       </div>
     </header>
     
-    <!-- Corpo do Artigo (O Markdown entra aqui formatado) -->
+    <!-- Corpo do Artigo -->
     <div class="text-lg leading-relaxed text-textMain space-y-6 [&>p]:mb-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-6 [&>h2]:text-white [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>strong]:text-white">
       <slot />
     </div>

@@ -1,0 +1,22 @@
+---
+import { getCollection, render } from 'astro:content';
+import ReviewLayout from '../../layouts/ReviewLayout.astro';
+
+// 1. Gera as rotas dinâmicas baseadas no id do arquivo (.mdx)
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+// 2. Resgata o post correspondente à URL atual
+const { id } = Astro.params;
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<ReviewLayout frontmatter={post.data}>
+  <Content />
+</ReviewLayout>
