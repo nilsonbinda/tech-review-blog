@@ -1,0 +1,78 @@
+---
+interface Store {
+  name: 'amazon' | 'shopee' | 'mercadolivre' | 'aliexpress' | string;
+  url: string;
+  price?: string;
+}
+
+interface Props {
+  stores: Store[];
+}
+
+const { stores = [] } = Astro.props;
+
+// Configuração visual para cada plataforma
+const storeConfig: Record<string, { label: string; bg: string; hoverBg: string; text: string }> = {
+  amazon: {
+    label: "Comprar na Amazon",
+    bg: "bg-[#FF9900]",
+    hoverBg: "hover:bg-[#e08700]",
+    text: "text-black font-extrabold",
+  },
+  shopee: {
+    label: "Comprar na Shopee",
+    bg: "bg-[#EE4D2D]",
+    hoverBg: "hover:bg-[#d43f21]",
+    text: "text-white font-extrabold",
+  },
+  mercadolivre: {
+    label: "Mercado Livre",
+    bg: "bg-[#FFE600]",
+    hoverBg: "hover:bg-[#e6cf00]",
+    text: "text-black font-extrabold",
+  },
+  aliexpress: {
+    label: "AliExpress",
+    bg: "bg-[#FF4747]",
+    hoverBg: "hover:bg-[#e03838]",
+    text: "text-white font-extrabold",
+  },
+};
+---
+
+<div class="my-10 bg-darkCard border border-darkBorder rounded-2xl p-6 shadow-xl">
+  <div class="flex items-center space-x-2 mb-6 border-b border-darkBorder pb-4">
+    <span class="text-2xl">🛍️</span>
+    <h3 class="text-xl font-bold text-textMain">Onde encontrar pelo melhor preço:</h3>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    {stores.map((store) => {
+      const config = storeConfig[store.name.toLowerCase()] || {
+        label: store.name,
+        bg: "bg-brandBlue",
+        hoverBg: "hover:bg-blue-600",
+        text: "text-white font-bold",
+      };
+
+      return (
+        <a
+          href={store.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`flex items-center justify-between p-4 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-md ${config.bg} ${config.hoverBg} ${config.text}`}
+        >
+          <div class="flex flex-col">
+            <span class="text-base leading-tight">{config.label}</span>
+            {store.price && (
+              <span class="text-xs opacity-90 font-normal">
+                A partir de {store.price}
+              </span>
+            )}
+          </div>
+          <span class="text-lg">➔</span>
+        </a>
+      );
+    })}
+  </div>
+</div>

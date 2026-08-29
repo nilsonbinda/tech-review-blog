@@ -7,7 +7,7 @@ description: "Testamos o teclado mecânico Keychron K2 por 30 dias. Descubra se 
 image: "https://images.unsplash.com/photo-1622036832712-d77986bccedd?q=80&w=1000&auto=format&fit=crop"
 ---
 import ProsCons from '../../components/ProsCons.astro';
-import AffiliateButton from '../../components/AffiliateButton.astro';
+import AffiliateStores from '../../components/AffiliateStores.astro';
 
 Se você passa mais de 8 horas por dia digitando, um teclado mecânico não é luxo...
 
@@ -29,4 +29,11 @@ O chassi é incrivelmente sólido...
 ## Veredito Final
 Considerando a construção impecável...
 
-<AffiliateButton href="https://amazon.com.br" text="Ver Preço na Amazon" />
+<AffiliateStores 
+  stores={[
+    { name: 'amazon', url: 'https://amazon.com.br', price: 'R$ 549,00' },
+    { name: 'mercadolivre', url: 'https://mercadolivre.com.br', price: 'R$ 520,00' },
+    { name: 'shopee', url: 'https://shopee.com.br', price: 'R$ 499,00' },
+    { name: 'aliexpress', url: 'https://aliexpress.com', price: 'R$ 450,00' }
+  ]} 
+/>
