@@ -1,0 +1,39 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} | Tech Reviews</title>
+  </head>
+  <body class="bg-darkBg text-textMain font-sans antialiased min-h-screen flex flex-col">
+    
+    <!-- Cabeçalho (Header) -->
+    <header class="border-b border-darkBorder bg-darkBg">
+      <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="/" class="text-xl font-bold tracking-tight hover:text-brandBlue transition-colors">
+          Tech<span class="text-brandBlue">Reviews</span>
+        </a>
+        <nav class="space-x-6 text-sm text-textMuted">
+          <a href="/" class="hover:text-textMain transition-colors">Início</a>
+          <a href="#" class="hover:text-textMain transition-colors">Periféricos</a>
+          <a href="#" class="hover:text-textMain transition-colors">Hardware</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
+      <slot />
+    </main>
+
+    <!-- Rodapé (Footer) -->
+    <footer class="border-t border-darkBorder mt-12 py-8 text-center text-sm text-textMuted">
+      <p>© 2026 Tech Reviews. Alguns links podem gerar comissão de afiliado.</p>
+    </footer>
+
+  </body>
+</html>

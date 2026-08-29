@@ -1,0 +1,28 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+---
+<Layout title={frontmatter.title}>
+  <article class="max-w-3xl mx-auto w-full">
+    
+    <!-- Cabeçalho do Artigo -->
+    <header class="mb-10 border-b border-darkBorder pb-8 pt-4">
+      <h1 class="text-3xl md:text-5xl font-extrabold mb-6 text-textMain leading-tight">
+        {frontmatter.title}
+      </h1>
+      <div class="flex items-center justify-between text-sm text-textMuted bg-darkCard px-4 py-3 rounded-lg border border-darkBorder">
+        <span>Por <strong>{frontmatter.author}</strong></span>
+        <div class="flex items-center space-x-2">
+          <span class="text-yellow-400 text-lg">⭐</span>
+          <span class="font-bold text-textMain text-lg">{frontmatter.rating} / 10</span>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Corpo do Artigo (O Markdown entra aqui formatado) -->
+    <div class="text-lg leading-relaxed text-textMain space-y-6 [&>p]:mb-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-6 [&>h2]:text-white [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>strong]:text-white">
+      <slot />
+    </div>
+
+  </article>
+</Layout>

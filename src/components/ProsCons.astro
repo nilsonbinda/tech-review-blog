@@ -1,0 +1,30 @@
+---
+const { pros = [], cons = [] } = Astro.props;
+---
+<div class="grid md:grid-cols-2 gap-6 my-10 text-base">
+  <!-- Prós -->
+  <div class="bg-darkCard border border-darkBorder rounded-xl p-6 shadow-sm">
+    <h3 class="text-success font-bold text-xl mb-4 border-b border-darkBorder pb-2">✅ Prós</h3>
+    <ul class="space-y-3">
+      {pros.map(pro => (
+        <li class="flex items-start text-textMain">
+          <span class="text-success mr-3 mt-1">✦</span>
+          <span>{pro}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Contras -->
+  <div class="bg-darkCard border border-darkBorder rounded-xl p-6 shadow-sm">
+    <h3 class="text-danger font-bold text-xl mb-4 border-b border-darkBorder pb-2">❌ Contras</h3>
+    <ul class="space-y-3">
+      {cons.map(con => (
+        <li class="flex items-start text-textMain">
+          <span class="text-danger mr-3 mt-1">✦</span>
+          <span>{con}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
