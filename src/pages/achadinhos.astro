@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// COLOQUE O LINK DO SEU GRUPO AQUI
+const LINK_GRUPO = "https://chat.whatsapp.com/SEU_LINK_AQUI"; 
+---
+
+<Layout title="Grupo VIP de Achadinhos">
+  <!-- 1. INSTRUÇÃO PARA O GOOGLE NÃO INDEXAR A PÁGINA -->
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <div class="max-w-xl mx-auto my-12 p-8 bg-darkCard border border-darkBorder rounded-2xl text-center shadow-2xl space-y-6">
+    
+    <!-- Emoji e Título -->
+    <div class="text-5xl animate-bounce">🔥</div>
+    <h1 class="text-3xl font-extrabold text-textMain leading-tight">
+      Grupo VIP de <span class="text-brandBlue">Achadinhos & Promoções</span>
+    </h1>
+    
+    <p class="text-textMuted text-base">
+      Receba diariamente as melhores ofertas de tecnologia, hardware e periféricos antes de todo mundo!
+    </p>
+
+    <!-- Botão de Entrada Manual -->
+    <div class="pt-2">
+      <a 
+        id="btn-grupo"
+        href={LINK_GRUPO}
+        class="inline-block w-full bg-success hover:bg-green-600 text-white font-extrabold text-xl py-4 px-8 rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.4)] transition-all transform hover:-translate-y-1"
+      >
+        💬 Entrar no Grupo VIP Agora
+      </a>
+    </div>
+
+    <!-- Mensagem do Contador -->
+    <p class="text-xs text-textMuted pt-4 border-t border-darkBorder">
+      Você será redirecionado automaticamente para o WhatsApp em <span id="contador" class="font-bold text-brandBlue text-sm">10</span> segundos...
+    </p>
+
+  </div>
+</Layout>
+
+<!-- 2. SCRIPT DE REDIRECIONAMENTO AUTOMÁTICO (CLIENT-SIDE) -->
+<script is:inline define:vars={{ LINK_GRUPO }}>
+  let tempoRestante = 10;
+  const elementoContador = document.getElementById('contador');
+
+  const intervalo = setInterval(() => {
+    tempoRestante--;
+    if (elementoContador) {
+      elementoContador.textContent = tempoRestante;
+    }
+
+    if (tempoRestante <= 0) {
+      clearInterval(intervalo);
+      window.location.href = LINK_GRUPO;
+    }
+  }, 1000);
+</script>
