@@ -1,0 +1,23 @@
+---
+interface Props {
+  question: string;
+}
+
+const { question } = Astro.props;
+---
+
+<!-- Renderização Visual do Accordion Individual -->
+<div class="my-4 bg-darkCard border border-darkBorder rounded-xl p-4 transition-all duration-300">
+  <details class="group [&[open]]:border-brandBlue">
+    <summary class="flex justify-between items-center font-bold text-textMain cursor-pointer list-none select-none text-base md:text-lg">
+      <span>{question}</span>
+      <span class="text-brandBlue font-bold text-xl group-open:rotate-180 transition-transform duration-300 ml-2">
+        ↓
+      </span>
+    </summary>
+    <div class="mt-3 pt-3 border-t border-darkBorder/60 text-textMuted text-sm md:text-base leading-relaxed space-y-3">
+      <!-- O <slot /> renderiza o texto/parágrafos que você escreveu dentro da tag -->
+      <slot />
+    </div>
+  </details>
+</div>
